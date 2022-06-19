@@ -52,6 +52,7 @@ public class CustomHashMap<K, V> {
 				if ( node.getKey().equals( key ) ) {
 					node.setValue( value );
 					elementFound = true;
+					break;
 				}
 			}
 			if ( !elementFound ) {
