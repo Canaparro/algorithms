@@ -10,7 +10,7 @@ public class CustomHashMap<K, V> {
 	private int maxMapSize = 10;
 
 	public static void main( String[] args ) {
-		CustomHashMap<String, Person> customHashMap = new CustomHashMap();
+		CustomHashMap<String, Person> customHashMap = new CustomHashMap<>();
 
 		System.out.println( "Jacob: " + customHashMap.calculateHash( "Jacob" ) );
 		System.out.println( "Natalie: " + customHashMap.calculateHash( "Natalie" ) );
@@ -84,7 +84,7 @@ public class CustomHashMap<K, V> {
 
 	private int mapToIndex( int hash ) {
 		int index = hash % maxMapSize;
-		return Math.max( index, 0 );
+		return Math.abs( index );
 	}
 
 	class Node<T, R> {
