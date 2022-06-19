@@ -1,9 +1,11 @@
 package com.example.demo.datastructures;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 
+import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +19,6 @@ class BinarySearchTreeTest {
 		binarySearchTree = new BinarySearchTree();
 	}
 
-
 	@Test
 	@DisplayName("Given an element exists in tree when doing contains should return true")
 	void givenAnElementExistsInTree_whenDoingContains_shouldReturnTrue() {
@@ -27,7 +28,7 @@ class BinarySearchTreeTest {
 		binarySearchTree.add( 3 );
 
 		// Then
-		assertThat( binarySearchTree.contains( 3 )).isTrue();
+		assertThat( binarySearchTree.contains( 3 ) ).isTrue();
 	}
 
 	@Test
@@ -39,14 +40,14 @@ class BinarySearchTreeTest {
 		binarySearchTree.add( 3 );
 
 		// Then
-		assertThat( binarySearchTree.contains( 17 )).isFalse();
+		assertThat( binarySearchTree.contains( 17 ) ).isFalse();
 	}
 
 	@Test
 	@DisplayName("Given an empty tree when doing contains should return false")
 	void givenAnEmptyTree_whenDoingContains_shouldReturnFalse() {
 		// Then
-		assertThat( binarySearchTree.contains( 1 )).isFalse();
+		assertThat( binarySearchTree.contains( 1 ) ).isFalse();
 	}
 
 	@Test
@@ -63,7 +64,24 @@ class BinarySearchTreeTest {
 		List<Integer> elements = binarySearchTree.getOrdered();
 
 		// Then
-		assertThat(elements).containsExactly( 3, 5, 7, 10, 15 );
+		assertThat( elements ).containsExactly( 3, 5, 7, 10, 15 );
+	}
+
+	@Test
+	@DisplayName("Given a populated tree when adding an already present element should throw")
+	void givenAPopulatedTree_whenAddingAnAlreadyPresentElement_shouldThrow() {
+		// Given
+		binarySearchTree.add( 5 );
+		binarySearchTree.add( 10 );
+		binarySearchTree.add( 3 );
+
+		// When
+		ThrowableAssert.ThrowingCallable throwingCallable = () -> binarySearchTree.add( 10 );
+
+		// Then
+		assertThatThrownBy( throwingCallable ).isInstanceOf(
+						IllegalArgumentException.class )
+				.hasMessage( "Could not add element because it is already present in tree" );
 	}
 
 }

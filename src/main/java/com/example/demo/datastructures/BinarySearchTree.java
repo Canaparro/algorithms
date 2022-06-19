@@ -25,13 +25,16 @@ public class BinarySearchTree {
 	}
 
 	public void printOrdered() {
-		if(root != null) root.traverseOrdered(System.out::println);
+		if ( root != null ) {
+			root.traverseOrdered( System.out::println );
+		}
 	}
 
 	public List<Integer> getOrdered() {
 		ArrayList<Integer> list = new ArrayList<>();
-		if(root != null)
+		if ( root != null ) {
 			root.traverseOrdered( list::add );
+		}
 		return list;
 	}
 
@@ -71,6 +74,11 @@ public class BinarySearchTree {
 		}
 
 		private void add( Node node ) {
+			if ( node.value == value ) {
+				throw new IllegalArgumentException(
+						"Could not add element because it is already present in tree" );
+			}
+
 			if ( node.getValue() > value ) {
 				if ( rightChild == null ) {
 					rightChild = node;
@@ -102,13 +110,13 @@ public class BinarySearchTree {
 			}
 		}
 
-		private void traverseOrdered( Consumer<Integer> consumer) {
-			if(leftChild != null) {
-				leftChild.traverseOrdered(consumer);
+		private void traverseOrdered( Consumer<Integer> consumer ) {
+			if ( leftChild != null ) {
+				leftChild.traverseOrdered( consumer );
 			}
 			consumer.accept( value );
-			if(rightChild != null) {
-				rightChild.traverseOrdered(consumer);
+			if ( rightChild != null ) {
+				rightChild.traverseOrdered( consumer );
 			}
 		}
 	}
