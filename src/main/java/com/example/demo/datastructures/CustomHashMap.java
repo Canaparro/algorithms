@@ -12,10 +12,10 @@ public class CustomHashMap<K, V> {
 	public static void main( String[] args ) {
 		CustomHashMap<String, Person> customHashMap = new CustomHashMap<>();
 
-		System.out.println( "Jacob: " + customHashMap.calculateHash( "Jacob" ) );
-		System.out.println( "Natalie: " + customHashMap.calculateHash( "Natalie" ) );
-		System.out.println( "Ron: " + customHashMap.calculateHash( "Ron" ) );
-		System.out.println( "Marren: " + customHashMap.calculateHash( "Marren" ) );
+		System.out.println( "Jacob: " + customHashMap.calculateIndex( "Jacob" ) );
+		System.out.println( "Natalie: " + customHashMap.calculateIndex( "Natalie" ) );
+		System.out.println( "Ron: " + customHashMap.calculateIndex( "Ron" ) );
+		System.out.println( "Marren: " + customHashMap.calculateIndex( "Marren" ) );
 
 		Person jacob = new Person( "Jacob", 39 );
 		Person natalie = new Person( "Natalie", 32 );
@@ -40,7 +40,7 @@ public class CustomHashMap<K, V> {
 	}
 
 	private void put( K key, V value ) {
-		int position = calculateHash( key );
+		int position = calculateIndex( key );
 		if ( position > array.length - 1 ) {
 			array = Arrays.copyOf( array, position + 1 );
 		}
@@ -65,7 +65,7 @@ public class CustomHashMap<K, V> {
 	}
 
 	private V get( K key ) {
-		int position = calculateHash( key );
+		int position = calculateIndex( key );
 		LinkedList<Node<K, V>> linkedList = array[position];
 		if ( linkedList != null ) {
 			for ( final Node<K, V> node : linkedList ) {
@@ -77,7 +77,7 @@ public class CustomHashMap<K, V> {
 		return null;
 	}
 
-	public int calculateHash( final K key ) {
+	public int calculateIndex( final K key ) {
 		int hashCode = key.hashCode();
 		return mapToIndex( hashCode );
 	}
