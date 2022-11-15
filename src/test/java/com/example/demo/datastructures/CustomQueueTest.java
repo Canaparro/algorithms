@@ -1,7 +1,6 @@
 package com.example.demo.datastructures;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -29,9 +28,9 @@ class CustomQueueTest {
 		queue.add( thirdIn );
 
 		// When
-		Integer firstOut = queue.pop();
-		Integer secondOut = queue.pop();
-		Integer thirdOut = queue.pop();
+		Integer firstOut = queue.remove();
+		Integer secondOut = queue.remove();
+		Integer thirdOut = queue.remove();
 
 		// Then
 		assertThat( firstOut ).isEqualTo( firstIn );
@@ -47,8 +46,8 @@ class CustomQueueTest {
 		queue.add( value );
 
 		// When
-		Integer firstPop = queue.pop();
-		Integer secondPop = queue.pop();
+		Integer firstPop = queue.remove();
+		Integer secondPop = queue.remove();
 		// Then
 		assertThat( firstPop ).isEqualTo( value );
 		assertThat( secondPop ).isNull();

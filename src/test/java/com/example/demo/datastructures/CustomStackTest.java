@@ -20,7 +20,7 @@ class CustomStackTest {
 	void givenAnEmptyStack_whenAddingAnElementOnPop_shouldReturnThatElement() {
 		// When
 		int value = 5;
-		stack.add( value );
+		stack.push( value );
 
 		// Then
 		assertThat( stack.pop() ).isEqualTo( value );
@@ -31,9 +31,9 @@ class CustomStackTest {
 	void givenAStackWithElementsInIt_whenPopping_shouldReturnElementsInReverseInsertionOrder() {
 		// Given
 		int firstIn = 5;
-		stack.add( firstIn );
+		stack.push( firstIn );
 		int secondIn = 6;
-		stack.add( secondIn );
+		stack.push( secondIn );
 
 		// When
 		Integer firstOut = stack.pop();

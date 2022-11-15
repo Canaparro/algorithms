@@ -16,7 +16,7 @@ public class CustomQueue<T> {
 		tail = newNode;
 	}
 
-	public T pop() {
+	public T remove() {
 		if ( head == null ) {
 			return null;
 		}
@@ -28,28 +28,36 @@ public class CustomQueue<T> {
 		return value;
 	}
 
-	static class Node<R> {
-		private R value;
-		private Node<R> next;
+	public T peek() {
+		return head.getValue();
+	}
 
-		public Node( final R value, final Node<R> next ) {
+	public boolean isEmpty() {
+		return head == null;
+	}
+
+	private static class Node<T> {
+		private T value;
+		private Node<T> next;
+
+		public Node( final T value, final Node<T> next ) {
 			this.value = value;
 			this.next = next;
 		}
 
-		public R getValue() {
+		public T getValue() {
 			return value;
 		}
 
-		public void setValue( final R value ) {
+		public void setValue( final T value ) {
 			this.value = value;
 		}
 
-		public Node<R> getNext() {
+		public Node<T> getNext() {
 			return next;
 		}
 
-		public void setNext( final Node<R> next ) {
+		public void setNext( final Node<T> next ) {
 			this.next = next;
 		}
 	}
